@@ -557,22 +557,23 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     {copied ? <Check size={20} /> : <LinkIcon size={20} />}
                     {copied ? "Copied!" : "Copy Link"}
                   </button>
-                  {typeof navigator !== "undefined" && navigator.share && (
-                    <button
-                      onClick={handleShare}
-                      className="btn btn-outline"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        padding: "0.75rem 1.5rem",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      <Share2 size={20} />
-                      Share
-                    </button>
-                  )}
+                  {typeof navigator !== "undefined" &&
+                    typeof navigator.share === "function" && (
+                      <button
+                        onClick={handleShare}
+                        className="btn btn-outline"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          padding: "0.75rem 1.5rem",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        <Share2 size={20} />
+                        Share
+                      </button>
+                    )}
                 </div>
               </div>
 
