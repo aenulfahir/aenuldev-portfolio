@@ -45,6 +45,7 @@ Portfolio website profesional dengan fitur admin dashboard lengkap, dibangun men
 - **Styling**: CSS Variables + Custom CSS
 - **Icons**: Lucide React
 - **Routing**: React Router v6
+- **Deployment**: Docker + Nginx
 
 ## 📦 Installation
 

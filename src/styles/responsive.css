@@ -1,0 +1,430 @@
+/* =============================================
+   RESPONSIVE & MOBILE-FRIENDLY STYLES
+   ============================================= */
+
+/* Tablet & Below (768px) */
+@media (max-width: 768px) {
+  /* Typography Scaling */
+  html {
+    font-size: 14px;
+  }
+
+  /* Fphy */
+  h1 {
+   ant;
+t;
+  }
+
+  h2 {
+tant;
+    litant;
+  }
+
+  h3 {
+    font-size: 1.25rem !imptant;
+    line-heighportant;
+  }
+
+
+  .container {
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+  }
+
+  .section {
+    padding: 3rem 0 !important;
+    min-height: auto !important;
+  }
+
+  //
+
+    padding: 1rem !i
+    margin-botto
+  }
+
+
+  .btn {
+    paddortant;
+    font-size: 0.85rem !important;
+  }
+
+ */
+  [style*="display: grid"],
+  [styleid"] {
+    grid-template-columns: 1
+   rtant;
+}
+
+  /* Force wrap for flex contai
+  [
+ant;
+    gap: 0.75rem !important;
+  }
+
+  /* Specific fixes for commo */
+  ["] {
+
+  }
+
+  [style*="grid-template-colus"] {
+   
+  }
+
+  /* Text alignment fixes */
+  [style*="text-align: center"] {
+   t;
+}
+
+  /* Reduce large  */
+  [style*="padding: 3rem"],
+  [
+;
+  }
+
+  [style*="padding: 2rem"],
+  [{
+
+  }
+
+  /* Reduce large gaps */
+  [],
+
+    gap: 1.5rem !important;
+  }
+
+  [style*="gap: 3rem"],
+  [ {
+ant;
+  }
+
+  [style*="gap: 2rem"],
+  [style*="gap:2rem"] {
+   
+  }
+
+  /* Reduce large margins */
+  [style*="margin-bottom: 4rem"],
+  [
+;
+  }
+
+  [style*="margin-bottom: 3rem"
+  [style*="marginBottom: 3rem"] {
+   tant;
+
+
+  [style*="margin-bottom: 2rem"],
+  [style*="marginBottom: 2rem"] {
+   rtant;
+
+
+  /* Font size reductions */
+  [style*="font-size: 4rem"],
+  [style*="fontSize: 4rem"] {
+   mportant;
+ }
+
+  [style*="font-size: 3.5rem"],
+  [style*="fontSize: 3.5rem"] {
+   tant;
+  }
+
+  [style*="font-size: 3rem"],
+  [
+ mportant;
+  }
+
+  [style*="font-size: 2.5re
+  [style
+    font-size: 1.5retant;
+  }
+
+  [sty],
+  [style*="fontSize: 2rem"] {
+   nt;
+
+
+  [style*="font-size: 1.5rem"],
+  [m"] {
+t;
+  }
+
+  /s */
+ 600px"],
+  [style*="maxWidth: 600"],
+  [style*="max-width: 800px"],
+  [style*="maxWidth: 800px"] {
+    max-width: 100% !important;
+  }
+
+  /* Hide Custom Cursor */
+  body {
+    cursor: autont;
+  }
+
+ct {
+    cursor: pointer
+  }
+
+  /oom */
+ {
+    font-size: 16px !impor
+  }
+
+ */
+item {
+    padding-left: 1.5rt;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Skills */
+  .{
+ 
+
+  }
+
+  /* Admin Sidebar - Hid/
+  aside[style*="position: fixe"] {
+    transform: trans0%);
+    transition
+  }
+
+  aside.admin-sidebar-open {
+    transform: t;
+    z-index: 999;
+    box-shadow: 2px 0 1;
+  }
+
+  /
+
+  main[style*="margin-left: "] {
+    margin-left: 0 !important;
+    padding: 1remt;
+    padding-top: 4rem !important;
+  }
+
+  /* Admin Mobile  */
+  .admin-mobile-toggle {
+    display: block !;
+  }
+
+  .admin-overlay {
+    display: b
+  }
+
+  /ments */
+ panel {
+important;
+    padding: 0.75rem 1rem !itant;
+  }
+
+  /* Blog cards grid /
+  [style*="minmax(350px"] {
+   t;
+
+
+  /* Comment replies - reduce indent */
+  ["],
+ "] {
+;
+  }
+
+  [style*="paddingLeft: 3rem
+  [style*="padding-left: 3rem{
+   ant;
+ }
+
+  /* Sticky elements b
+  [style*="positi"] {
+   
+tant;
+  }
+
+  /* Large decorative */
+  [ {
+ 
+
+}
+ }d: white;
+ un
+    backgroolid #ccc;px s border: 1{
+   panel 
+  .glass-ck;
+  }
+  color: blae;
+  ound: whit
+    backgrbody {}
+
+    rtant;
+e !imposplay: none {
+    dimobile-toggl, .admin-ide, footerbtn, nav, as
+  .a print {
+@mediStyles */
+
+/* Print  }
+}rtant;
+ !impo: 1fr lumns-complate  grid-te  it"] {
+-futopeat(amns: reluCogridTemplatele*="/
+  [sty grid *Contact form{
+  /* x) dth: 768p-wiia (maxe */
+@medPagt tacCon }
+}
+
+/* 
+ important;rem !: 1izet-s    fon"] {
+15rem1.ont-size: *="fe[stylearticlr */
+  il heade detaog/* Bl
+
+  
+  }tant; 1fr !imporns:columemplate-grid-t] {
+    fr" 1fr 1Columns:gridTemplate*="  [style */
+ed postatur {
+  /* Fe8px)dth: 76a (max-wi */
+@mediog Page}
+
+/* Bltant;
+  }
+or1fr !implumns: coe--templatid{
+    gr00px"] (3e*="minmaxstyl
+  [ect cards *//* Proj8px) {
+  dth: 76edia (max-wi*/
+@mojects Page 
+}
+
+/* Pr;
+  }0 !importantng-left:   paddi {
+    .timelinen cards */
+tioence/Educari
+
+  /* Expertant;
+  } !impoumns: 1fr-col-template gridfr"] {
+   r 2umns: 1fCollatemple*="gridTed */
+  [stycar /* Profile 768px) {
+ dth: edia (max-wie */
+@m/* About Pag  }
+}
+
+t;
+!importan 100%   width:] .btn {
+  center"ntent: "justifyCole*=1rem"][styp: le*="ga flex"][styisplay:"d
+  [style*=0%;
+  }
+: 10th widant;
+   port column !imn:directio
+    flex-er"] {t: centContene*="justify"][stylp: 1remstyle*="galex"]["display: f[style*= */
+  nsero butto /* H  }
+
+  1rem);
+c(33.333% - 0 0 cal  flex:   div {
+enter"] >nt: cstifyConteju="e*p"][stylexWrap: wra="fl [style*/
+ ns *tack icoh s{
+  /* Tec768px) width: media (max- */
+@onero Secti* Home H */
+
+/nt Fixesfic Compone
+
+/* Speci
+  }
+}important;5rem !5rem 1.0.7  padding:   .btn {
+  ;
+  }
+
+-width: 44pxx;
+    min: 44p min-height
+   "radio"] {type=put["], in="checkboxypeut[t a, inptton, bucoarse) {
+ pointer:  none) and ((hover: */
+@media  TargetsiendlyFr
+
+/* Touch-;
+  }
+}o !important: autight-hein    m{
+"] t: 100vh"minHeightyle*="],
+  [sht: 100vh-heigmin[style*=" }
+
+  ortant;
+ 0 !impg: 2rem ddin   partant;
+ uto !impo-height: a   mintion {
+ e) {
+  .secscap: landentationand (oripx) width: 768dia (max-
+@mee */obilpe MLandsca}
+
+/* t;
+  }
+portan1rem !imnt-size:  {
+    fo1.15rem"]tSize: e*="fon,
+  [styl"]15remze: 1.e*="font-sityl [s
+  }
+
+ mportant;!i: 1rem font-size
+    rem"] {1.25tSize: fon*="
+  [styleem"],25rnt-size: 1.="fostyle*
+  }
+
+  [mportant;.15rem !ize: 1sifont-
+    "] {e: 1.5remSizfontstyle*="  [rem"],
+ze: 1.5e*="font-si */
+  [stylt sizesSmaller fon/* 
+
+  ortant;
+  }.5rem !imp    gap: 0rem"] {
+le*="gap:1 [styem"],
+ *="gap: 1r[style
+  
+ }ant;
+ rem !importap: 0.75
+    g"] {"gap:1.5remtyle*=
+  [srem"],*="gap: 1.5  [styler gaps */
+ Even smalle}
+
+  /*
+  t;!importannter : ceify-contentjust    0%;
+: 10
+    width {.btn  ttons */
+ull width bu
+
+  /* Ftant;
+  }!impor 0.75rem     padding:el {
+ass-pan
+  .gl}
+nt;
+  importa0 0.75rem !ing: 
+    paddcontainer { .t;
+  }
+
+ m !importan5ret-size: 1.3    fon h2 {
+
+  }
+
+ rtant;mpo5rem !i-size: 1.7font  h1 {
+    
+
+
+  } 13px;-size:  font
+   {  html {
+dth: 480px)x-wimedia (mapx) */
+@l (480mal S/* Mobile
+}
+
+nt;
+  } !importa: 1rem;
+    gapimportantex-start !items: fl  align-  important;
+column !on: tirecx-di
+    fle{"] e-betweennt: spacfy-conte"justie*=  [styl/
+ layout *ter mobile for bet flex-startenter tocontent c /* Justify  }
+
+ rtant;
+ po5rem !imsize: 2.  font-ortant;
+  px !imp height: 100nt;
+   x !importa100pdth:     wi0px"] {
+height: 15*=""][style0px="width: 15e*}
+
+  [stylortant;
+  rem !imp 2e:t-siz fon;
+   portant: 80px !im  height
+  tant;80px !impor   width: px"] {
+ 120"height: [style*=x"]0p12width:  [style*="
+ e images */iltar/Prof /* Ava
+
+ ant;
+  } 0.5 !importopacity:ant;
+     !import: 300px  height  

@@ -1,0 +1,344 @@
+/* Mobile Responsive Fixes */
+
+@media (max-width: 768px) {
+  /* Add padding top to body for fi
+  body {
+    padding-top: 80px !impotant;
+  }
+
+  /ing */
+
+    padding: 0 1.25rem !important;
+  }
+
+  /* Section spacing - add more breathing room */
+  .section {
+    padding: 2.5rem 0 !important;
+ant;
+  }
+
+  /* Glass panels - better spacing */
+el {
+    padding: 1.25re
+    margin-bottom: 1.5rem !important;
+  }
+
+s */
+  nav.glass-panel {
+    margin: 0.5rem !important;
+    padding: 1rem !important;
+    position: fixed !important;
+t;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+
+*/
+  [style*="displa],
+  [style*="display:grid"] {
+    grid-template-columns: 1fr tant;
+   ant;
+
+
+  /* Better flex wrapping with spacing */
+  [style*="display: flex"]:
+   portant;
+nt;
+  }
+
+  /* Reduce large font sizes */
+  [],
+ { 
+    font-size: 2rem !importa
+    line-height: 1.2 !important;
+  }
+  
+  [style*="font-size: 3.5rem"],
+  [style*="fontSize: 3.5rem"] { 
+    font-size: 1.85rem !import; 
+    line-height: 1.2 !important;
+  }
+  
+  [style*="font-size: 3r],
+  [style*="fontSize: 3rem"] { 
+   
+
+  }
+  
+  [style*="font-size: 2.5rem"],
+  [
+nt; 
+    line-height: 1.3 !itant;
+  }
+  
+  [style*="font-size: 2rem"],
+  [{ 
+
+    line-height: 1.4 !imporant;
+  }
+
+  [style*="font-size: 1.5rem"],
+  [
+ ortant; 
+ }
+
+  /* Redg room */
+  [style*="padding: 3rem"],
+  [style*="padding:3rem"] { 
+   
+  }
+
+;
+  }
+}th: 44pxmin-widpx;
+    44:   min-height
+  "radio"] {ut[type="], inpox"checkbut[type=npn, a, i {
+  buttose): coarinter (ponone) andhover: 
+@media (/ targets *
+/* Touch
+ant;
+  }
+}to !importeight: au    min-hf-type {
+on:first-octi
+
+  .seant;
+  }ort0 !impg: 2rem     paddin;
+ntto !importaight: au min-he
+   on { .secticape) {
+ dslanientation: d (oran8px) ax-width: 76a (mle */
+@mediobidscape m/* Lan
+ 
+  }
+}
+mportant;5rem !i.8 0ap:
+    gm"] { 1.5re"gap:tyle*=,
+  [s 1.5rem"]p:yle*="gast
+  }
+
+  [rtant; 1rem !impo    gap: 2rem"] { 
+"gap:tyle*= [s 2rem"],
+ tyle*="gap:ht */
+  [stigt too s but noighter gap/* T}
+
+  nt; 
+  !importa.15rem nt-size: 1    fo"] { 
+e: 1.5remntSiztyle*="fo],
+  [sem"1.5re: "font-sizyle*=
+
+  [st
+  }!important; 1.5rem size: nt- { 
+    foize: 2rem"]="fontSle*"],
+  [sty-size: 2reme*="font/
+  [styl * fontsEven smaller* 
+
+  /;
+  }portantrem 1rem !im 0.85dding:    partant;
+r !impoentet: cfy-conten
+    justiant;mport 100% !iwidth:    
+
+  .btn {
+  }
+rtant;!impo.25rem ottom: 1argin-btant;
+    m1rem !impording:     padel {
+.glass-pan
+  
+  }important;
+rem 0 !ng: 2  paddi  n {
+  .sectio }
+
+mportant;
+ g: 0 1rem !i
+    paddinner {
+  .containt;
+  }
+importa !75pxp: todding-   pabody {
+ 80px) {
+  th: 4wid@media (max- */
+ng breathiillstt  compact buven more mobile - e Small}
+
+/*;
+  }
+ant !import - 80px): calc(100vh min-heightrtant;
+   rem !impoop: 3ing-t    paddtype {
+:first-of-ction
+  .sespecific */tion Hero sec  /* }
+
+ant;
+  ortem 0 !imp 1ring:  paddortant;
+  ter !imp-align: cen    textr"] {
+align: centele*="text-  [styor hero */
+ered fcentep gnment - ke Text ali
+
+  /*
+  }nt;importa: auto !t;
+    topanrtlative !impoposition: re  cky"] {
+  : stion*="positi  [stylets */
+ky elemen/* Stic;
+  }
+
+  tantor.5rem !imp
+    gap: 1rtant;1fr !impocolumns: -template-   grid"] {
+ x(350pxnma"mi
+  [style*=(300px"],minmaxstyle*="cing */
+  [roper sparid - p/* Cards g
+  
+  }
+;important.75rem !ottom: 0margin-btant;
+    or5rem !imp0.7ding:     padt {
+lec, seextareaput, t*/
+  iner spacing  betts -m inputFor  /*   }
+
+portant;
+25rem !imft: 1.le   padding-] {
+ t: 2.75rem"dding-lef"pa  [style*=rem"],
+ngLeft: 2.75ddistyle*="pa
+  }
+
+  [mportant;.5rem !i 1eft:ding-l  pad
+  em"] {3r: eft"padding-l [style*=rem"],
+ Left: 3e*="padding
+
+  [styl
+  }rtant;em !impo: 1.25reft    margin-lrem"] {
+n-left: 2giar[style*="m
+  rem"],t: 2="marginLef/
+  [style*r indent *ies - betteplomment re
+
+  /* C  }rtant;
+m 0 !impo: 0.5re
+    marginortant;em !imp0.65rem 1rdding:  {
+    pa-card
+  .skill */ngcards spacikill  }
+
+  /* S;
+  !importantom: 1.5remn-bottargi   m;
+ antm !importleft: 1.5readding-
+    ptem {.timeline-i
+  g */pacinline s
+  /* Time  }
+t;
+ortanmp: 1rem 0 !ipaddingrtant;
+    rem !impo gap: 1er"] {
+   nt ceontent:ifyCtyle*="just wrap"][sxWrap:e*="fle  [stylout */
+r laybette - ack icons* Tech st
+
+  /
+  }important;m !re gap: 1.25nt;
+   !importalex-start n-items: fligtant;
+    aorcolumn !imp-direction:    flex *) {
+ "]:not(navce-betweenntent: spastify-cotyle*="ju */
+  [swith spacinge-between spac
+  /* Stack nt;
+  }
+importa 36px !ght:nt;
+    hei6px !importa width: 3 {
+   : 40px"]e*="heightyl40px"][st"width: *=[style  }
+
+  tant;
+porimrem auto !margin: 1nt;
+    px !importa 85 height:ant;
+   rtmpo !i 85pxidth:
+    wx"] { 120p="height:style*"][idth: 120pxyle*="w}
+
+  [stnt;
+  to !importa 1rem auin:    margnt;
+x !importa100pht: 
+    heigtant;or!imp100px h:  {
+    widtpx"]eight: 150style*="h"][dth: 150px"wistyle*= */
+  [ith spacings waller avatar}
+
+  /* Sm  rtant;
+poay: none !im
+    displ"] {ght: 300pxe*="heistylh: 300px"][="widt,
+  [style*x"]height: 600pe*="00px"][styl*="width: 6style
+  [ments */ve eleratige deco /* Hide lar
+ 
+  }
+ant; !importock display: bl {
+   min-overlay
+
+  .ad
+  }ant;mporty: block !ispla{
+    dibile-toggle in-mo .adm
+  }
+
+ t;portan5rem !im4.top: adding-   pt;
+ portan25rem !impadding: 1.tant;
+    t: 0 !imporn-lef   margi {
+ 250px"]left: *="margin-  main[stylex"],
+250pt: "marginLef[style*= }
+
+  mainant;
+ X(0) !importm: translateansfor
+    trn {oper-admin-sidebaside.  a);
+  }
+
+ateX(-100%rm: transltransfox"] {
+    th: 250ple*="widaside[sty
+  */ar  sideb/* Admin
+  }
+
+  rtant;poth: 100% !im{
+    wid"] .btn center: tentstifyConjustyle*=" flex"][display:  [style*=";
+  }
+
+mportant1rem !igap: tant;
+    olumn !imporn: cectio    flex-direnter"] {
+ent: cConttifye*="jusflex"][styl: ="displaystyle* */
+  [ntainersButton co* 
+  /
+  }
+ortant;m 0 !imp5re: 0.  marginrtant;
+  po9rem !im 0.ize:   font-sportant;
+ 25rem !im: 0.75rem 1.  padding .btn {
+  g */
+ acin spetterButtons - b  }
+
+  /* important;
+0% !width: 10    max-"] {
+xidth: 1200pyle*="maxW
+  [st1200px"],: max-width="yle*],
+  [st: 800px"xWidth"ma[style*=
+  "],: 800px"max-width
+  [style*=px"],Width: 600*="max
+  [style 600px"],width:*="max-tyle [sainers */
+ ntl width co
+
+  /* Fulrtant; 
+  }po1.25rem !imbottom: in-{ 
+    marg] tom: 2rem"ot*="marginByle
+  [st 2rem"],in-bottom:marg  [style*="  }
+  
+portant; 
+im5rem !1.gin-bottom: 
+    mar3rem"] { ttom: ginBoe*="mar
+  [styl 3rem"],m:bottomargin-=" [style*
+ }
+  ; 
+  ortantrem !imptom: 2n-bot
+    margi m: 4rem"] {tonBotargile*="m
+  [sty4rem"],gin-bottom: style*="mars */
+  [iner marg /* Bett
+  }
+
+ nt; ortam !imp25re: 1.  gapm"] { 
+  reap:2e*="g"],
+  [stylmp: 2reyle*="ga  [st}
+  
+
+  !important; 5rem   gap: 1.  ] { 
+"="gap:3reme*
+  [stylem"],gap: 3rtyle*="  
+  [sant; 
+  }
+ !import 2rem
+    gap:m"] { *="gap:4re
+  [style],em""gap: 4r[style*=
+   */pstter ga
+
+  /* Beant; 
+  } !import: 1.25rem   padding
+  { 2rem"]"padding:*=tylem"],
+  [sreadding: 2yle*="pst 
+  [ 
