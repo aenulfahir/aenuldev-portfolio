@@ -16,6 +16,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CustomCursor from "./components/CustomCursor";
 import BackgroundAnimation from "./components/BackgroundAnimation";
+import Chatbot from "./components/Chatbot";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
       <DataProvider>
         <CustomCursor />
         <BackgroundAnimation />
+        <Chatbot />
         <Router>
           <Routes>
             <Route path="/" element={<MainLayout />} />
