@@ -194,7 +194,7 @@ const Chatbot: React.FC = () => {
             "X-Title": "AenulDev Portfolio Chatbot",
           },
           body: JSON.stringify({
-            model: "meta-llama/llama-3.1-8b-instruct:free",
+            model: "z-ai/glm-4.5-air:free",
             messages: [
               {
                 role: "system",
