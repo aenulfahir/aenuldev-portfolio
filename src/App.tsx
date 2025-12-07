@@ -11,6 +11,7 @@ import ProjectManager from "./pages/admin/ProjectManager";
 import PricingManager from "./pages/admin/PricingManager";
 import BlogManager from "./pages/admin/BlogManager";
 import ContactManager from "./pages/admin/ContactManager";
+import NotFound from "./pages/NotFound";
 import { DataProvider } from "./context/DataContext";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -48,6 +49,9 @@ const App: React.FC = () => {
               <Route path="blog" element={<BlogManager />} />
               <Route path="contact" element={<ContactManager />} />
             </Route>
+
+            {/* 404 Page */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </DataProvider>
