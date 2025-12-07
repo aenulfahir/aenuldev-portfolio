@@ -61,6 +61,12 @@ export interface Project {
   tech: string[];
   type: "web" | "mobile" | "other";
   link?: string;
+  image?: string;
+  image2?: string;
+  image3?: string;
+  github?: string;
+  features?: string[];
+  client?: string;
 }
 
 export interface PricingPlan {
@@ -255,6 +261,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
             tech: p.tech || [],
             type: p.type as "web" | "mobile" | "other",
             link: p.link || undefined,
+            image: p.image || undefined,
+            image2: p.image2 || undefined,
+            image3: p.image3 || undefined,
+            github: p.github || undefined,
+            features: p.features || undefined,
+            client: p.client || undefined,
           }))
         );
       }
@@ -382,6 +394,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
           tech: project.tech,
           type: project.type,
           link: project.link || null,
+          image: (project as any).image || null,
+          image2: (project as any).image2 || null,
+          image3: (project as any).image3 || null,
+          github: (project as any).github || null,
+          features: (project as any).features || null,
+          client: (project as any).client || null,
           order_index: projects.length,
         })
         .select()
@@ -399,6 +417,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
             tech: data.tech || [],
             type: data.type as "web" | "mobile" | "other",
             link: data.link || undefined,
+            image: data.image || undefined,
+            image2: data.image2 || undefined,
+            image3: data.image3 || undefined,
+            github: data.github || undefined,
+            features: data.features || undefined,
+            client: data.client || undefined,
           },
         ]);
       }
@@ -419,6 +443,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
           tech: project.tech,
           type: project.type,
           link: project.link || null,
+          image: project.image || null,
+          image2: project.image2 || null,
+          image3: project.image3 || null,
+          github: project.github || null,
+          features: project.features || null,
+          client: project.client || null,
         })
         .eq("id", id);
 

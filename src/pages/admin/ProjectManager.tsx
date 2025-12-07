@@ -457,7 +457,7 @@ const ProjectManager: React.FC = () => {
                   />
                 </div>
 
-                <div>
+                <div style={{ gridColumn: "1 / -1" }}>
                   <label
                     style={{
                       display: "block",
@@ -470,24 +470,137 @@ const ProjectManager: React.FC = () => {
                       size={14}
                       style={{ display: "inline", marginRight: "0.3rem" }}
                     />
-                    Thumbnail URL (Optional)
+                    Project Images (up to 3)
                   </label>
-                  <input
-                    type="text"
-                    name="image"
-                    value={(formData as any).image || ""}
-                    onChange={handleChange}
-                    placeholder="https://example.com/image.jpg"
-                    style={{
-                      width: "100%",
-                      padding: "0.75rem",
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid var(--border-color)",
-                      borderRadius: "8px",
-                      color: "var(--text-primary)",
-                      fontSize: "0.95rem",
-                    }}
-                  />
+
+                  {/* Image Upload Grid */}
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: "1rem",
+                    marginTop: "0.5rem"
+                  }}>
+                    {[1, 2, 3].map((slot) => {
+                      const imageKey = slot === 1 ? 'image' : `image${slot}`;
+                      const imageUrl = (formData as any)[imageKey];
+
+                      return (
+                        <div
+                          key={slot}
+                          style={{
+                            position: "relative",
+                            aspectRatio: "16/9",
+                            background: "rgba(255,255,255,0.03)",
+                            border: "2px dashed rgba(255,255,255,0.15)",
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            transition: "all 0.2s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = "var(--primary-color)";
+                            e.currentTarget.style.background = "rgba(0,255,157,0.03)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+                          }}
+                        >
+                          {imageUrl ? (
+                            <>
+                              <img
+                                src={imageUrl}
+                                alt={`Project image ${slot}`}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "cover",
+                                }}
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).style.display = "none";
+                                }}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setFormData(prev => ({ ...prev, [imageKey]: "" } as any));
+                                }}
+                                style={{
+                                  position: "absolute",
+                                  top: "0.5rem",
+                                  right: "0.5rem",
+                                  width: "28px",
+                                  height: "28px",
+                                  borderRadius: "50%",
+                                  background: "rgba(0,0,0,0.7)",
+                                  border: "1px solid rgba(255,255,255,0.3)",
+                                  color: "#fff",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <X size={14} />
+                              </button>
+                            </>
+                          ) : (
+                            <label
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "100%",
+                                height: "100%",
+                                cursor: "pointer",
+                                padding: "1rem",
+                              }}
+                            >
+                              <input
+                                type="file"
+                                accept="image/*"
+                                style={{ display: "none" }}
+                                onChange={async (e) => {
+                                  const file = e.target.files?.[0];
+                                  if (!file) return;
+
+                                  const { uploadProjectImage } = await import("../../lib/imageUtils");
+
+                                  try {
+                                    setSaving(true);
+                                    const projectId = currentProject?.id || `temp_${Date.now()}`;
+                                    const url = await uploadProjectImage(file, projectId, slot as 1 | 2 | 3);
+                                    setFormData(prev => ({ ...prev, [imageKey]: url } as any));
+                                  } catch (err) {
+                                    console.error("Upload failed:", err);
+                                    alert("Failed to upload image. Please try again.");
+                                  } finally {
+                                    setSaving(false);
+                                  }
+                                }}
+                              />
+                              <ImageIcon size={24} style={{ color: "#666", marginBottom: "0.5rem" }} />
+                              <span style={{ fontSize: "0.8rem", color: "#666", textAlign: "center" }}>
+                                Click to upload
+                              </span>
+                              <span style={{ fontSize: "0.7rem", color: "#555" }}>
+                                Image {slot}
+                              </span>
+                            </label>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <small style={{ color: "var(--text-secondary)", fontSize: "0.75rem", marginTop: "0.5rem", display: "block" }}>
+                    Images are automatically compressed for optimal performance.
+                  </small>
                 </div>
               </div>
             </div>
@@ -621,11 +734,10 @@ const ProjectManager: React.FC = () => {
                         background: formData.tech.includes(tech)
                           ? "rgba(255,255,255,0.1)"
                           : "rgba(255,255,255,0.05)",
-                        border: `1px solid ${
-                          formData.tech.includes(tech)
+                        border: `1px solid ${formData.tech.includes(tech)
                             ? "var(--accent-color)"
                             : "var(--border-color)"
-                        }`,
+                          }`,
                         borderRadius: "6px",
                         color: formData.tech.includes(tech)
                           ? "var(--accent-color)"
@@ -884,11 +996,10 @@ const ProjectManager: React.FC = () => {
                           background: isSelected
                             ? "rgba(34, 197, 94, 0.1)"
                             : "rgba(255,255,255,0.05)",
-                          border: `1px solid ${
-                            isSelected
+                          border: `1px solid ${isSelected
                               ? "rgba(34, 197, 94, 0.4)"
                               : "var(--border-color)"
-                          }`,
+                            }`,
                           borderRadius: "6px",
                           color: isSelected
                             ? "#22c55e"

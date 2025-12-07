@@ -13,7 +13,6 @@ import {
   Maximize2,
   Link as LinkIcon,
   Star,
-  GitBranch,
   Users,
 } from "lucide-react";
 import type { Project } from "../context/DataContext";
@@ -33,20 +32,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isImageFullscreen, setIsImageFullscreen] = useState(false);
 
-  // Get project images
   const projectImages = [
     (project as any)?.image,
     (project as any)?.image2,
     (project as any)?.image3,
-    // Add more images here if available
   ].filter((img) => img && img.trim() !== "");
 
-  const projectFeatures = (project as any)?.features || [
-    "Responsive Design",
-    "Real-time Updates",
-    "User Authentication",
-    "Data Visualization",
-  ];
+  const projectFeatures = (project as any)?.features || [];
 
   useEffect(() => {
     if (isOpen) {
@@ -56,8 +48,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
     } else {
       document.body.style.overflow = "unset";
     }
+  }, [isOpen]);
 
-    // Handle ESC key
+  useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         if (isImageFullscreen) {
@@ -68,10 +61,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
       }
     };
 
-    window.addEventListener("keydown", handleEsc);
+    if (isOpen) {
+      window.addEventListener("keydown", handleEsc);
+    }
     return () => {
       window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "unset";
     };
   }, [isOpen, isImageFullscreen, onClose]);
 
@@ -97,11 +91,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
     }
   };
 
-  const nextImage = () => {
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
   };
 
-  const prevImage = () => {
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setCurrentImageIndex(
       (prev) => (prev - 1 + projectImages.length) % projectImages.length
     );
@@ -111,758 +107,525 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
   return (
     <>
-      {/* Backdrop with Animated Background */}
+      {/* Backdrop */}
       <div
-        className="project-modal-backdrop"
         onClick={onClose}
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background:
-            "radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(74, 222, 128, 0.1) 0%, transparent 40%), rgba(0, 0, 0, 0.92)",
-          backdropFilter: "blur(10px)",
-          zIndex: 9997,
+          inset: 0,
+          zIndex: 9998,
+          background: "rgba(0, 0, 0, 0.95)",
+          backdropFilter: "blur(8px)",
           animation: "fadeIn 0.3s ease",
-          cursor: "default",
         }}
-      >
-        {/* Animated Small Particles - Green Theme */}
-        <div className="modal-particles">
-          {[...Array(40)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                position: "absolute",
-                width: `${Math.random() * 2 + 1}px`,
-                height: `${Math.random() * 2 + 1}px`,
-                background:
-                  i % 4 === 0
-                    ? "rgba(34, 197, 94, 0.8)"
-                    : i % 4 === 1
-                    ? "rgba(16, 185, 129, 0.7)"
-                    : i % 4 === 2
-                    ? "rgba(74, 222, 128, 0.6)"
-                    : "rgba(134, 239, 172, 0.5)",
-                borderRadius: "50%",
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${
-                  Math.random() * 15 + 15
-                }s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-                boxShadow: `0 0 ${Math.random() * 8 + 3}px currentColor`,
-              }}
-            />
-          ))}
-        </div>
+      />
 
-        {/* Animated Gradient Orbs - Green Theme */}
-        <div
-          className="gradient-orb orb-1"
-          style={{
-            position: "absolute",
-            width: "450px",
-            height: "450px",
-            background:
-              "radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, transparent 70%)",
-            borderRadius: "50%",
-            filter: "blur(70px)",
-            animation: "float 22s ease-in-out infinite",
-            top: "15%",
-            left: "5%",
-          }}
-        />
-        <div
-          className="gradient-orb orb-2"
-          style={{
-            position: "absolute",
-            width: "550px",
-            height: "550px",
-            background:
-              "radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)",
-            borderRadius: "50%",
-            filter: "blur(90px)",
-            animation: "float 28s ease-in-out infinite reverse",
-            bottom: "5%",
-            right: "5%",
-          }}
-        />
-        <div
-          className="gradient-orb orb-3"
-          style={{
-            position: "absolute",
-            width: "400px",
-            height: "400px",
-            background:
-              "radial-gradient(circle, rgba(74, 222, 128, 0.18) 0%, transparent 70%)",
-            borderRadius: "50%",
-            filter: "blur(75px)",
-            animation: "float 32s ease-in-out infinite",
-            top: "45%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-      </div>
-
-      {/* Modal Container */}
+      {/* Modal - Positioned Higher */}
       <div
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 9998,
+          top: "5%", // HIGHER UP
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 9999,
+          width: "90%",
+          maxWidth: "900px",
+          maxHeight: "88vh",
+          background: "#0a0a0a",
+          borderRadius: "16px",
+          border: "1px solid rgba(0, 255, 157, 0.2)",
+          boxShadow: "0 0 60px rgba(0, 255, 157, 0.08), 0 25px 50px rgba(0, 0, 0, 0.8)",
+          overflow: "hidden",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem",
-          overflowY: "auto",
-          cursor: "default",
+          flexDirection: "column",
+          animation: "slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) onClose();
-        }}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Content */}
-        <div
-          className="project-modal-content"
+        {/* Close Button */}
+        <button
+          onClick={onClose}
           style={{
-            background:
-              "linear-gradient(135deg, rgba(20, 20, 30, 0.98) 0%, rgba(30, 20, 40, 0.98) 100%)",
-            backdropFilter: "blur(20px)",
-            borderRadius: "24px",
-            maxWidth: "1200px",
-            width: "100%",
-            maxHeight: "90vh",
-            overflow: "hidden",
-            border: "1px solid rgba(255, 255, 255, 0.15)",
-            boxShadow:
-              "0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 184, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-            animation: "slideUp 0.4s ease",
-            position: "relative",
-            cursor: "auto",
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            width: "36px",
+            height: "36px",
+            borderRadius: "50%",
+            background: "rgba(0, 0, 0, 0.8)",
+            border: "1px solid rgba(0, 255, 157, 0.3)",
+            color: "var(--primary-color)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 10,
+            cursor: "pointer",
+            transition: "all 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(0, 255, 157, 0.15)";
+            e.currentTarget.style.transform = "rotate(90deg)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(0, 0, 0, 0.8)";
+            e.currentTarget.style.transform = "rotate(0deg)";
           }}
         >
-          {/* Close Button */}
-          <button
-            onClick={onClose}
-            style={{
-              position: "absolute",
-              top: "1.5rem",
-              right: "1.5rem",
-              background: "rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              borderRadius: "50%",
-              width: "48px",
-              height: "48px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              zIndex: 10,
-              color: "white",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.2)";
-              e.currentTarget.style.transform = "rotate(90deg)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-              e.currentTarget.style.transform = "rotate(0deg)";
-            }}
-          >
-            <X size={24} />
-          </button>
+          <X size={18} />
+        </button>
 
-          {/* Scrollable Content */}
-          <div style={{ overflowY: "auto", maxHeight: "90vh" }}>
-            {/* Hero Section with Image */}
-            {projectImages.length > 0 && (
+        {/* Hero Image */}
+        <div
+          style={{
+            height: "280px",
+            position: "relative",
+            background: "#050505",
+            flexShrink: 0,
+          }}
+        >
+          {projectImages.length > 0 ? (
+            <>
+              <img
+                src={projectImages[currentImageIndex]}
+                alt={project.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: "brightness(0.85)",
+                }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
+              {/* Gradient */}
               <div
                 style={{
-                  position: "relative",
-                  height: "400px",
-                  background:
-                    "linear-gradient(135deg, rgba(0, 184, 255, 0.1), rgba(138, 43, 226, 0.1))",
-                  overflow: "hidden",
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "120px",
+                  background: "linear-gradient(to top, #0a0a0a, transparent)",
+                }}
+              />
+
+              {/* Image Nav */}
+              {projectImages.length > 1 && (
+                <>
+                  <button onClick={prevImage} style={navBtnStyle("left")}>
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button onClick={nextImage} style={navBtnStyle("right")}>
+                    <ChevronRight size={20} />
+                  </button>
+                  {/* Dots */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "1rem",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      display: "flex",
+                      gap: "6px",
+                    }}
+                  >
+                    {projectImages.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentImageIndex(i)}
+                        style={{
+                          width: i === currentImageIndex ? "20px" : "8px",
+                          height: "8px",
+                          borderRadius: "4px",
+                          background:
+                            i === currentImageIndex
+                              ? "var(--primary-color)"
+                              : "rgba(255,255,255,0.3)",
+                          border: "none",
+                          cursor: "pointer",
+                          transition: "all 0.3s ease",
+                        }}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* Fullscreen */}
+              <button
+                onClick={() => setIsImageFullscreen(true)}
+                style={{
+                  position: "absolute",
+                  top: "1rem",
+                  left: "1rem",
+                  padding: "0.4rem 0.8rem",
+                  background: "rgba(0, 0, 0, 0.7)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: "4px",
+                  color: "#fff",
+                  fontSize: "0.75rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  cursor: "pointer",
                 }}
               >
-                <img
-                  src={projectImages[currentImageIndex]}
-                  alt={project.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
+                <Maximize2 size={12} /> View
+              </button>
+            </>
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "#080808",
+              }}
+            >
+              <Layers size={48} style={{ color: "rgba(0, 255, 157, 0.15)" }} />
+            </div>
+          )}
+        </div>
 
-                {/* Image Overlay Gradient */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: "50%",
-                    background:
-                      "linear-gradient(to top, rgba(20, 20, 30, 1), transparent)",
-                  }}
-                />
+        {/* Content - Scrollable */}
+        <div
+          style={{
+            flex: 1,
+            overflowY: "auto",
+            padding: "2rem",
+          }}
+        >
+          {/* Header */}
+          <div style={{ marginBottom: "1.5rem" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                marginBottom: "0.75rem",
+              }}
+            >
+              <span
+                style={{
+                  color: "var(--primary-color)",
+                  fontSize: "0.8rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "1.5px",
+                  fontWeight: "600",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                }}
+              >
+                <Layers size={14} /> {project.type}
+              </span>
+              <span style={{ color: "#333" }}>•</span>
+              <span
+                style={{
+                  color: "#666",
+                  fontSize: "0.85rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                }}
+              >
+                <Calendar size={14} /> {project.date}
+              </span>
+            </div>
 
-                {/* Image Navigation */}
-                {projectImages.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      style={{
-                        position: "absolute",
-                        left: "1rem",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(0, 0, 0, 0.5)",
-                        backdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                        borderRadius: "50%",
-                        width: "48px",
-                        height: "48px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        color: "white",
-                        transition: "all 0.3s ease",
-                      }}
-                    >
-                      <ChevronLeft size={24} />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      style={{
-                        position: "absolute",
-                        right: "1rem",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(0, 0, 0, 0.5)",
-                        backdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                        borderRadius: "50%",
-                        width: "48px",
-                        height: "48px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        color: "white",
-                        transition: "all 0.3s ease",
-                      }}
-                    >
-                      <ChevronRight size={24} />
-                    </button>
+            <h2
+              style={{
+                fontSize: "2rem",
+                fontWeight: "700",
+                color: "#fff",
+                marginBottom: "1rem",
+                lineHeight: "1.2",
+              }}
+            >
+              {project.title}
+            </h2>
 
-                    {/* Image Indicators */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: "1rem",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        display: "flex",
-                        gap: "0.5rem",
-                      }}
-                    >
-                      {projectImages.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          style={{
-                            width: index === currentImageIndex ? "32px" : "8px",
-                            height: "8px",
-                            borderRadius: "4px",
-                            background:
-                              index === currentImageIndex
-                                ? "var(--accent-color)"
-                                : "rgba(255, 255, 255, 0.3)",
-                            border: "none",
-                            cursor: "pointer",
-                            transition: "all 0.3s ease",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
+            <p
+              style={{
+                fontSize: "1rem",
+                lineHeight: "1.7",
+                color: "#999",
+              }}
+            >
+              {project.description}
+            </p>
+          </div>
 
-                {/* Fullscreen Button */}
-                <button
-                  onClick={() => setIsImageFullscreen(true)}
-                  style={{
-                    position: "absolute",
-                    top: "1rem",
-                    left: "1rem",
-                    background: "rgba(0, 0, 0, 0.5)",
-                    backdropFilter: "blur(10px)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    borderRadius: "8px",
-                    padding: "0.5rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    cursor: "pointer",
-                    color: "white",
-                    fontSize: "0.85rem",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  <Maximize2 size={16} />
-                  Fullscreen
-                </button>
+          {/* Stats Row */}
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              marginBottom: "1.5rem",
+              flexWrap: "wrap",
+            }}
+          >
+            <div style={statBoxStyle}>
+              <Code size={16} style={{ color: "var(--primary-color)" }} />
+              <span>{project.tech.length} Technologies</span>
+            </div>
+            <div style={statBoxStyle}>
+              <Star size={16} style={{ color: "var(--primary-color)" }} />
+              <span>Completed</span>
+            </div>
+            {(project as any)?.client && (
+              <div style={statBoxStyle}>
+                <Users size={16} style={{ color: "var(--primary-color)" }} />
+                <span>{(project as any).client}</span>
               </div>
             )}
+          </div>
 
-            {/* Content Section */}
-            <div style={{ padding: "2.5rem" }}>
-              {/* Header */}
-              <div style={{ marginBottom: "2rem" }}>
-                <div
+          {/* Tech Stack */}
+          <div style={{ marginBottom: "1.5rem" }}>
+            <h4 style={sectionTitle}>Tech Stack</h4>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              {project.tech.map((tech, i) => (
+                <span
+                  key={i}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1rem",
-                    marginBottom: "1rem",
-                    flexWrap: "wrap",
+                    padding: "0.4rem 0.8rem",
+                    background: "rgba(0, 255, 157, 0.05)",
+                    border: "1px solid rgba(0, 255, 157, 0.15)",
+                    borderRadius: "4px",
+                    fontSize: "0.85rem",
+                    color: "var(--primary-color)",
+                    fontFamily: "var(--font-mono)",
                   }}
                 >
-                  <span
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: "rgba(0, 184, 255, 0.1)",
-                      border: "1px solid rgba(0, 184, 255, 0.3)",
-                      borderRadius: "8px",
-                      color: "var(--accent-color)",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <Layers size={16} />
-                    {project.type}
-                  </span>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      color: "var(--text-secondary)",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    <Calendar size={16} />
-                    {project.date}
-                  </span>
-                </div>
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
 
-                <h2
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "700",
-                    marginBottom: "1rem",
-                    background: "linear-gradient(135deg, #00b8ff, #8a2be2)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {project.title}
-                </h2>
-
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    lineHeight: "1.8",
-                    color: "var(--text-secondary)",
-                    marginBottom: "2rem",
-                  }}
-                >
-                  {project.description}
-                </p>
-
-                {/* Action Buttons */}
-                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        padding: "0.75rem 1.5rem",
-                        fontSize: "1rem",
-                        textDecoration: "none",
-                      }}
-                    >
-                      <Globe size={20} />
-                      Visit Live Site
-                    </a>
-                  )}
-                  {(project as any).github && (
-                    <a
-                      href={(project as any).github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        padding: "0.75rem 1.5rem",
-                        fontSize: "1rem",
-                        textDecoration: "none",
-                      }}
-                    >
-                      <Github size={20} />
-                      View Source
-                    </a>
-                  )}
-                  <button
-                    onClick={handleCopyLink}
-                    className="btn btn-outline"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      padding: "0.75rem 1.5rem",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    {copied ? <Check size={20} /> : <LinkIcon size={20} />}
-                    {copied ? "Copied!" : "Copy Link"}
-                  </button>
-                  {typeof navigator !== "undefined" &&
-                    typeof navigator.share === "function" && (
-                      <button
-                        onClick={handleShare}
-                        className="btn btn-outline"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          padding: "0.75rem 1.5rem",
-                          fontSize: "1rem",
-                        }}
-                      >
-                        <Share2 size={20} />
-                        Share
-                      </button>
-                    )}
-                </div>
-              </div>
-
-              {/* Stats Section (Optional) */}
+          {/* Features */}
+          {projectFeatures.length > 0 && (
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4 style={sectionTitle}>Features</h4>
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-                  gap: "1rem",
-                  marginBottom: "2rem",
-                  padding: "1.5rem",
-                  background: "rgba(255, 255, 255, 0.03)",
-                  borderRadius: "16px",
-                  border: "1px solid rgba(255, 255, 255, 0.05)",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: "0.75rem",
                 }}
               >
-                <div style={{ textAlign: "center" }}>
+                {projectFeatures.map((feature: string, i: number) => (
                   <div
+                    key={i}
                     style={{
-                      fontSize: "2rem",
-                      fontWeight: "700",
-                      color: "var(--accent-color)",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    <Star size={24} style={{ display: "inline" }} />
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.85rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Featured
-                  </div>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: "700",
-                      color: "var(--accent-color)",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    {project.tech.length}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.85rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Technologies
-                  </div>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: "700",
-                      color: "var(--accent-color)",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    <GitBranch size={24} style={{ display: "inline" }} />
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.85rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Production
-                  </div>
-                </div>
-              </div>
-
-              {/* Tech Stack Section */}
-              <div style={{ marginBottom: "2rem" }}>
-                <h3
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "600",
-                    marginBottom: "1rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    color: "var(--text-primary)",
-                  }}
-                >
-                  <Code size={24} />
-                  Technology Stack
-                </h3>
-                <div
-                  style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
-                >
-                  {project.tech.map((tech, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        padding: "0.6rem 1.2rem",
-                        background: "rgba(0, 184, 255, 0.1)",
-                        border: "1px solid rgba(0, 184, 255, 0.3)",
-                        borderRadius: "12px",
-                        color: "var(--secondary-color)",
-                        fontSize: "0.95rem",
-                        fontWeight: "500",
-                        transition: "all 0.3s ease",
-                        cursor: "default",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background =
-                          "rgba(0, 184, 255, 0.2)";
-                        e.currentTarget.style.transform = "translateY(-2px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background =
-                          "rgba(0, 184, 255, 0.1)";
-                        e.currentTarget.style.transform = "translateY(0)";
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features Section */}
-              {projectFeatures.length > 0 && (
-                <div style={{ marginBottom: "2rem" }}>
-                  <h3
-                    style={{
-                      fontSize: "1.5rem",
-                      fontWeight: "600",
-                      marginBottom: "1rem",
+                      padding: "0.75rem 1rem",
+                      background: "#0d0d0d",
+                      border: "1px solid #1a1a1a",
+                      borderRadius: "6px",
+                      color: "#ccc",
+                      fontSize: "0.9rem",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.5rem",
-                      color: "var(--text-primary)",
+                      gap: "0.6rem",
                     }}
                   >
-                    <Star size={24} />
-                    Key Features
-                  </h3>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(250px, 1fr))",
-                      gap: "1rem",
-                    }}
-                  >
-                    {projectFeatures.map((feature: string, index: number) => (
-                      <div
-                        key={index}
-                        style={{
-                          padding: "1rem",
-                          background: "rgba(255, 255, 255, 0.03)",
-                          border: "1px solid rgba(255, 255, 255, 0.1)",
-                          borderRadius: "12px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.75rem",
-                          transition: "all 0.3s ease",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background =
-                            "rgba(255, 255, 255, 0.05)";
-                          e.currentTarget.style.borderColor =
-                            "var(--accent-color)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background =
-                            "rgba(255, 255, 255, 0.03)";
-                          e.currentTarget.style.borderColor =
-                            "rgba(255, 255, 255, 0.1)";
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "8px",
-                            height: "8px",
-                            borderRadius: "50%",
-                            background: "var(--accent-color)",
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span
-                          style={{
-                            color: "var(--text-secondary)",
-                            fontSize: "0.95rem",
-                          }}
-                        >
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
+                    <Check size={14} style={{ color: "var(--primary-color)" }} />
+                    {feature}
                   </div>
-                </div>
-              )}
-
-              {/* Additional Info */}
-              {(project as any).client && (
-                <div
-                  style={{
-                    padding: "1.5rem",
-                    background: "rgba(138, 43, 226, 0.1)",
-                    border: "1px solid rgba(138, 43, 226, 0.3)",
-                    borderRadius: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1rem",
-                  }}
-                >
-                  <Users size={24} style={{ color: "var(--accent-color)" }} />
-                  <div>
-                    <div
-                      style={{
-                        fontSize: "0.85rem",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Client
-                    </div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "600" }}>
-                      {(project as any).client}
-                    </div>
-                  </div>
-                </div>
-              )}
+                ))}
+              </div>
             </div>
+          )}
+
+          {/* Actions */}
+          <div
+            style={{
+              display: "flex",
+              gap: "0.75rem",
+              flexWrap: "wrap",
+              paddingTop: "1.5rem",
+              borderTop: "1px solid #1a1a1a",
+            }}
+          >
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={primaryBtnStyle}
+              >
+                <Globe size={16} /> Live Demo
+              </a>
+            )}
+            {(project as any).github && (
+              <a
+                href={(project as any).github}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={outlineBtnStyle}
+              >
+                <Github size={16} /> Source
+              </a>
+            )}
+            <button onClick={handleCopyLink} style={iconBtnStyle}>
+              {copied ? <Check size={16} /> : <LinkIcon size={16} />}
+            </button>
+            <button onClick={handleShare} style={iconBtnStyle}>
+              <Share2 size={16} />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Fullscreen Image Viewer */}
-      {isImageFullscreen && projectImages.length > 0 && (
+      {/* Fullscreen */}
+      {isImageFullscreen && (
         <div
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0, 0, 0, 0.95)",
+            inset: 0,
+            background: "black",
             zIndex: 10000,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            animation: "fadeIn 0.3s ease",
           }}
           onClick={() => setIsImageFullscreen(false)}
         >
+          <img
+            src={projectImages[currentImageIndex]}
+            alt="Fullscreen"
+            style={{
+              maxWidth: "95%",
+              maxHeight: "95%",
+              objectFit: "contain",
+            }}
+          />
           <button
-            onClick={() => setIsImageFullscreen(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsImageFullscreen(false);
+            }}
             style={{
               position: "absolute",
               top: "2rem",
               right: "2rem",
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              background: "rgba(0,0,0,0.5)",
+              padding: "0.75rem",
               borderRadius: "50%",
-              width: "56px",
-              height: "56px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              color: "#fff",
+              border: "1px solid #333",
               cursor: "pointer",
-              color: "white",
-              zIndex: 10001,
             }}
           >
-            <X size={28} />
+            <X size={20} />
           </button>
-          <img
-            src={projectImages[currentImageIndex]}
-            alt={project.title}
-            style={{
-              maxWidth: "90%",
-              maxHeight: "90%",
-              objectFit: "contain",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          />
         </div>
       )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { 
+            opacity: 0; 
+            transform: translateX(-50%) translateY(30px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateX(-50%) translateY(0); 
+          }
+        }
+      `}</style>
     </>
   );
+};
+
+// Helper Styles
+const navBtnStyle = (side: "left" | "right"): React.CSSProperties => ({
+  position: "absolute",
+  [side]: "1rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "36px",
+  height: "36px",
+  borderRadius: "50%",
+  background: "rgba(0, 0, 0, 0.6)",
+  border: "1px solid rgba(255,255,255,0.2)",
+  color: "#fff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+});
+
+const statBoxStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "0.6rem 1rem",
+  background: "#0d0d0d",
+  border: "1px solid #1a1a1a",
+  borderRadius: "6px",
+  color: "#ccc",
+  fontSize: "0.85rem",
+};
+
+const sectionTitle: React.CSSProperties = {
+  fontSize: "0.85rem",
+  fontWeight: "600",
+  color: "#666",
+  textTransform: "uppercase",
+  letterSpacing: "1px",
+  marginBottom: "0.75rem",
+};
+
+const primaryBtnStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "0.7rem 1.4rem",
+  background: "var(--primary-color)",
+  color: "#000",
+  borderRadius: "6px",
+  fontWeight: "600",
+  fontSize: "0.9rem",
+  textDecoration: "none",
+  transition: "all 0.2s ease",
+};
+
+const outlineBtnStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "0.7rem 1.4rem",
+  background: "transparent",
+  color: "var(--primary-color)",
+  border: "1px solid var(--primary-color)",
+  borderRadius: "6px",
+  fontWeight: "600",
+  fontSize: "0.9rem",
+  textDecoration: "none",
+  transition: "all 0.2s ease",
+};
+
+const iconBtnStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "40px",
+  height: "40px",
+  background: "transparent",
+  color: "#666",
+  border: "1px solid #333",
+  borderRadius: "6px",
+  cursor: "pointer",
+  transition: "all 0.2s ease",
 };
 
 export default ProjectModal;
